@@ -1,1 +1,3 @@
 To run this code you need to need to have google account credentials which need to be saved in the project directory ( Name of the file should be "client_secret.json") and add a redirect URL in your google cloud. 
+
+/rest/v1/calendar/init/ -> This API will return an authorization_url. On clicking the authorization_url you will be prompt for the user credential account. After choosing the account redirect API will be called (/rest/v1/calendar/redirect/) which will fetch all the events marked in your calendar.
