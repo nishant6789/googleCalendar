@@ -53,27 +53,21 @@ def GoogleCalendarRedirectView(request):
     credentials = flow.credentials
     request.session['credentials'] = credentials_to_dict(credentials)
 
-    # Check if credentials are in session
     if 'credentials' not in request.session:
         return redirect('v1/calendar/init')
 
-    # Load credentials from the session.
     credentials = google.oauth2.credentials.Credentials(
         **request.session['credentials'])
 
-    # Use the Google API Discovery Service to build client libraries, IDE plugins,
-    # and other tools that interact with Google APIs.
-    # The Discovery API provides a list of Google APIs and a machine-readable "Discovery Document" for each API
+    
     service = googleapiclient.discovery.build(
         API_SERVICE_NAME, API_VERSION, credentials=credentials)
 
-    # Returns the calendars on the user's calendar list
     calendar_list = service.calendarList().list().execute()
 
-    # Getting user ID which is his/her email address
     calendar_id = calendar_list['items'][0]['id']
     print(calendar_id)
-    # Getting all events associated with a user ID (email address)
+
     events  = service.events().list(calendarId=calendar_id).execute()
 
     events_list_append = []

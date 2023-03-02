@@ -1,0 +1,1 @@
+To run this code you need to need to have google account credentials which need to be saved in the project directory ( Name of the file should be "client_secret.json") and add a redirect URL in your google cloud. 
